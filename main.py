@@ -1,6 +1,7 @@
 from System.Compiler import *
 
 filename = input()
-Compiler(filename)
+folder = 'Examples/'
+Compiler(folder + filename)
 
 input()

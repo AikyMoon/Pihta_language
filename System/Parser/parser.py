@@ -57,10 +57,27 @@ class Parser(object):
         for j in range(3, len(lst)):
             if lst[j][0] == 'var_ident':
                 # var_value = self.variables[lst[j][1]]
-                var_value = self.mem.save_vars[lst[j][1]]
-                to_eval_string += str(var_value)
+                if '(' in lst[j][1]:
+                    var_value = self.mem.save_vars[lst[j][1][1:]]
+                    to_eval_string += '(' + str(var_value)
+                elif ')' in lst[j][1]:
+                    var_value = self.mem.save_vars[lst[j][1][:-1]]
+                    to_eval_string += str(var_value) + ')'
+                else:
+                    var_value = self.mem.save_vars[lst[j][1]]
+                    to_eval_string += str(var_value)
+            elif lst[j][0] == 'input':
+                to_eval_string = input()
             else:
                 to_eval_string += str(lst[j][1])
-        self.mem.save(lst[1][1], eval(to_eval_string))
+        if '(' in lst[1][1] and ')' in lst[1][1]:
+            s = lst[1][1].find('(')
+            e = lst[1][1].find(')')
+            brackets_eval = eval(lst[1][1][s:e+1])
+            to_eval_string = to_eval_string[:s] + str(brackets_eval) + to_eval_string[e:]
+            self.mem.save(lst[1][1], eval(to_eval_string))
+        else:
+            # print(to_eval_string)
+            self.mem.save(lst[1][1], eval(to_eval_string))
             # self.variables[lst[1][1]] = eval(to_eval_string)
 

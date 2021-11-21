@@ -3,9 +3,10 @@ import re
 tokens_dict = {
     'var_declare' : r'var',
     'output' : r'console',
-    'var_ident' : r'[a-zA-Z]',
+    'input' : r'entry',
+    'var_ident' : r'[a-zA-Z()]+',
     # 'operator' : r'[+-=/*]',
-    'digit' : r'[0-9]',
+    'digit' : r'\d+',
     # 'string' : r'"',
 }
 # класс лексера
