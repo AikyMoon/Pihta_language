@@ -2,8 +2,6 @@ class Memory(object):
 
     def __init__(self):
         self.save_vars = {}
-<<<<<<< HEAD
-<<<<<<< HEAD
         self.condition = None
         self.true_condition = None
         self.false_condition = None
@@ -24,13 +22,3 @@ class Memory(object):
 
     def save_start(self, bool):
         self.start = bool
-=======
-
-    def save(self, variable, value):
-        self.save_vars[variable] = value
->>>>>>> 078f9820365c24e2c64eb8df907b0190d0309579
-=======
-
-    def save(self, variable, value):
-        self.save_vars[variable] = value
->>>>>>> 078f9820365c24e2c64eb8df907b0190d0309579
